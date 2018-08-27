@@ -1,9 +1,13 @@
 package com.hwdm.controller;
 
+import com.hwdm.model.User;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * Rest API Controller for Management Member Request
@@ -13,20 +17,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberController {
 
-    @RequestMapping("/member/new")
-    public String createMember() {
-        Member member = new Member();
+    private final MemberRepository membRepo;
 
-        return "What are needs to create new member?";
+    public MemberController(MemberRepository membRepo) {
+        this.membRepo = membRepo;
+    }
+
+
+    @RequestMapping("/member/new")
+    public Member createMember(@RequestParam(value ="userID", defaultValue = "BABO") String userID,
+                               @RequestParam(value ="userPwd", defaultValue = "babo") String userPwd,
+                               Map<String, Object> model) {
+        Member member = new Member();
+        member.setUserID(userID);
+        member.setUserPwd(userPwd);
+        //model.put("member", member);
+
+        this.membRepo.save(member);
+
+        return member;
     }
 
     @RequestMapping("/member/login")
-    public Member member(@RequestParam(value = "company", defaultValue = "LDM") String company,
-                         @RequestParam(value = "telephone", defaultValue = "babo") String telephone) {
-        Member member = new Member();
-        member.setCompany(company);
-        member.setTelephone(telephone);
+    public User user(@RequestParam(value = "userID", defaultValue = "LDM") String userID,
+                     @RequestParam(value = "userPwd", defaultValue = "babo") String userPwd) {
 
-        return member;
+        return null;
+
     }
 }
