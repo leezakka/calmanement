@@ -42,7 +42,7 @@
         </dependency>
 
 
-        <!-- Databases - Uses HSQL by default -->
+        <!-- Databases - Uses MySQL by default -->
 
         <dependency>
             <groupId>mysql</groupId>

@@ -1,7 +1,6 @@
 package com.hwdm.controller;
 
 import com.hwdm.model.User;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
@@ -10,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "members")
+@Component
 public class Member extends User{
 
     @Column(name = "company")

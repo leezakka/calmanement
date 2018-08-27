@@ -1,12 +1,10 @@
 package com.hwdm.controller;
 
-import com.hwdm.model.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,15 +15,16 @@ import java.util.Map;
 @RestController
 public class MemberController {
 
+    @Autowired
     private final MemberRepository membRepo;
 
     public MemberController(MemberRepository membRepo) {
         this.membRepo = membRepo;
     }
 
-
+    // Create Member
     @RequestMapping("/member/new")
-    public Member createMember(@RequestParam(value ="userID", defaultValue = "BABO") String userID,
+    public Member createMember(@RequestParam(value ="userID", defaultValue = "tester") String userID,
                                @RequestParam(value ="userPwd", defaultValue = "babo") String userPwd,
                                Map<String, Object> model) {
         Member member = new Member();
@@ -38,11 +37,23 @@ public class MemberController {
         return member;
     }
 
+    // Login Member
     @RequestMapping("/member/login")
-    public User user(@RequestParam(value = "userID", defaultValue = "LDM") String userID,
+    public Member member(@RequestParam(value = "userID", defaultValue = "LDM") String userID,
                      @RequestParam(value = "userPwd", defaultValue = "babo") String userPwd) {
-
         return null;
-
     }
+
+    // Get All Members
+    @RequestMapping("/member/all")
+    public List<Member> getAllMembers() {
+        return this.membRepo.findAll();
+    }
+
+    // Get Specific Member
+    @RequestMapping("/member/{user_id}")
+    public Member showMember(@PathVariable(value = "user_id") String userID) {
+       return this.membRepo.findByUserID(userID);
+    }
+
 }
