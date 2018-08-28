@@ -66,4 +66,5 @@ public class Member extends User{
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+
 }

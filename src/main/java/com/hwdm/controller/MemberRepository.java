@@ -1,17 +1,16 @@
 package com.hwdm.controller;
 
-
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * Member Repository
+ * @author Hyun Woo Lee
+ */
 @Component
 public interface MemberRepository extends Repository<Member, String> {
-
-
     /**
      * save an {@link Member} to the data store, either inserting or updating it
      * @param member the {@link Member} to save
