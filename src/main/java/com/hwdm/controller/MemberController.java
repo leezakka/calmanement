@@ -23,25 +23,38 @@ public class MemberController {
     }
 
     // Create Member
+    //@RequestMapping("/member/new")
+    //public Member createMember(@RequestParam(value ="userID", defaultValue = "tester") String userID,
+    //                           @RequestParam(value ="userPwd", defaultValue = "babo") String userPwd,
+    //                           @RequestParam(value ="address", defaultValue = "Korea Seoul") String address,
+    //                           @RequestParam(value ="company", defaultValue = "dataroad") String company,
+    //                           @RequestParam(value ="department", defaultValue = "TSV") String department,
+    //                           @RequestParam(value ="extension", defaultValue = "02-3775-0093") String extension,
+    //                           @RequestParam(value ="telephone", defaultValue = "010-7200-8625") String telephone,
+    //                           Map<String, Object> model) {
+    //    Member member = new Member();
+    //    member.setUserID(userID);
+    //    member.setUserPwd(userPwd);
+    //    member.setAddress(address);
+    //    member.setCompany(company);
+    //    member.setDepartment(department);
+    //    member.setExtension(extension);
+    //    member.setTelephone(telephone);
+    //    this.membRepo.save(member);
+
+    //    return member;
+    //}
     @RequestMapping("/member/new")
-    public Member createMember(@RequestParam(value ="userID", defaultValue = "tester") String userID,
-                               @RequestParam(value ="userPwd", defaultValue = "babo") String userPwd,
-                               Map<String, Object> model) {
-        Member member = new Member();
-        member.setUserID(userID);
-        member.setUserPwd(userPwd);
-        //model.put("member", member);
-
+    public Member createMember(@RequestBody Member member) {
         this.membRepo.save(member);
-
         return member;
     }
 
     // Login Member
     @RequestMapping("/member/login")
-    public Member member(@RequestParam(value = "userID", defaultValue = "LDM") String userID,
+    public Member member(@RequestBody Member member, @RequestParam(value = "userID", defaultValue = "LDM") String userID,
                      @RequestParam(value = "userPwd", defaultValue = "babo") String userPwd) {
-        return null;
+        return member;
     }
 
     // Get All Members

@@ -12,26 +12,27 @@ import javax.persistence.Table;
 @Component
 public class Member extends User{
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "company")
     private String company;
 
     @Column(name = "department")
     private String department;
 
-    @Column(name = "extenstion")
+    @Column(name = "extension")
     private String extension;
 
     @Column(name = "telephone")
     private String telephone;
 
-    // For Superclass
-    public String getMemberID() {
-        return this.getUserID();
+    public String getAddress() {
+        return address;
     }
 
-    // For Superclass
-    public void setMemberID(String memberID) {
-       this.setUserID(memberID);
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCompany() {
